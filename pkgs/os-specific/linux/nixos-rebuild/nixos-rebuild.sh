@@ -430,7 +430,7 @@ if [[ -z $_NIXOS_REBUILD_REEXEC && -n $canRun && -z $fast ]]; then
             SHOULD_REEXEC=1
         fi
     else
-        runCmd nix "${flakeFlags[@]}" build --out-link "${tmpDir}/nixos-rebuild" "$flake#$flakeAttr.config.system.build.nixos-rebuild" "${extraBuildFlags[@]}" "${lockFlags[@]}"
+        runCmd nix "${flakeFlags[@]}" build --out-link "${tmpDir}/nixos-rebuild" "path:$flake#$flakeAttr.config.system.build.nixos-rebuild" "${extraBuildFlags[@]}" "${lockFlags[@]}"
         if p=$(readlink -e "${tmpDir}/nixos-rebuild"); then
             SHOULD_REEXEC=1
         fi
